@@ -1,9 +1,13 @@
 import "./css/style.css";
 
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import { Inter, Architects_Daughter } from "next/font/google";
 
 import Header from "@/components/ui/header";
-import Banner from "@/components/banner";
 
 const inter = Inter({
   subsets: ["latin"],

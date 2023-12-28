@@ -1,12 +1,11 @@
-import VideoThumb from "@/public/images/hero-image-01.jpg";
-import ModalVideo from "@/components/modal-video";
 import { FaChevronRight } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { links } from "./links";
+import { SwiperAchievements } from "./swiper-achievements";
 
 export default function Hero() {
   return (
-    <section>
+    <section className="flex flex-col gap-10">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 relative">
         {/* Illustration behind hero content */}
         <div
@@ -123,12 +122,8 @@ export default function Hero() {
             </h2>
           </div>
 
-          <div
-            className="grid grid-cols-1 md:grid-cols-[4fr_2fr] md:grid-rows-1"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div className=" md:items-start justify-center md:justify-start hidden md:flex">
+          <div className="grid grid-cols-1 md:grid-cols-[4fr_2fr]" data-aos="fade-up">
+            <div className="md:items-start justify-center md:justify-start hidden md:flex">
               <video className="rounded-md object-cover h-[300px] w-auto" playsInline autoPlay muted loop>
                 <source src={links.videos.stellarAnimation} type="video/mp4" />
               </video>
@@ -142,9 +137,27 @@ export default function Hero() {
                 Our passion for design goes beyond beautiful imagery and into the mind of the consumer, where we believe
                 good design should solve problems and position a brand so it stands out as well as stands for something.
               </p>
-              <div className="w-fit" data-aos="fade-up" data-aos-delay="400">
+              <div className="w-fit" data-aos="fade-up">
                 <ButtonWithChevronRight text="Schedule a call" />
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* swiper with achievements */}
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 relative" data-aos="fade-up">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] grid-rows-w lg:grid-rows-1">
+          <div className="flex items-center justify-center">
+            <SwiperAchievements />
+          </div>
+
+          <div className="flex justify-center items-center">
+            <div className="flex flex-col gap-4">
+              <h3 className="h3">Achievements</h3>
+              <p className="text-xl text-gray-400">
+                We are proud of our achievements and we want to share them with you.
+              </p>
             </div>
           </div>
         </div>
