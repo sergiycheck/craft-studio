@@ -1,8 +1,8 @@
-import {FC, MouseEventHandler} from "react";
+import { FC, MouseEventHandler } from "react";
 
-import Image, {StaticImageData} from "next/image";
+import Image, { StaticImageData } from "next/image";
 
-type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+type ImgProps = React.HTMLAttributes<HTMLDivElement> & {
   alt?: string;
   aspect?: number | string;
   className?: string;
@@ -47,7 +47,9 @@ const Img: FC<ImgProps> = ({
         height: height || size,
         aspectRatio: aspect,
         borderRadius: radius,
-      }}>
+      }}
+      {...props}
+    >
       <Image
         src={src ?? ""}
         alt={alt || "img"}
@@ -61,10 +63,9 @@ const Img: FC<ImgProps> = ({
           objectFit: objectFit || "cover",
           borderRadius: radius,
         }}
-        {...props}
       />
     </div>
   );
 };
 
-export {Img};
+export { Img };
