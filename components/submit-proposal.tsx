@@ -20,13 +20,13 @@ export const SubmitProposal = () => {
         Let's discuss your project! Please, provide us with a brief description of what you already have and what you
         are going to achieve.
       </p>
-      <form className="grid grid-cols-2 gap-8">
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col space-y-4">
           <InputFilled name="name" placeholder="Your name" />
           <InputFilled name="company" placeholder="Your company name" />
           <div>
             <span className="font-semibold block mb-2">Project type</span>
-            <div className="flex space-x-2">
+            <div className="flex gap-2 flex-wrap">
               <ButtonOption>Web App</ButtonOption>
               <ButtonOption>Mobile App</ButtonOption>
               <ButtonOption>SaaS</ButtonOption>
@@ -54,12 +54,13 @@ export const SubmitProposal = () => {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col space-y-4">
           <InputFilled name="email" placeholder="Your email" />
 
           <div>
             <span className="font-semibold block mb-2">Project Budget</span>
-            <div className="flex space-x-2">
+            <div className="flex gap-2 flex-wrap">
               <ButtonOption>{`< $50k`}</ButtonOption>
               <ButtonOption>$50k - 100k</ButtonOption>
               <ButtonOption>$100k - 200k</ButtonOption>

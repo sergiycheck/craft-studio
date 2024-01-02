@@ -10,6 +10,7 @@ import Zigzag from "@/components/zigzag";
 import TeamMembers from "@/components/team-members";
 import { ClientReviews } from "@/components/client-reviews";
 import { SubmitProposal } from "@/components/submit-proposal";
+import { MarqueePromotion } from "@/components/marquee-promotion";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       {/* <Zigzag /> */}
       <TeamMembers />
       <SubmitProposal />
+      <MarqueePromotion />
       <Newsletter />
     </>
   );
