@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { GithubSvg, InstagramSvg, LinkedInSvg, MetaSvg, WrappedSvgLink, XTwitterSvg } from "../common/svgs";
 
@@ -13,7 +12,7 @@ export default function Footer() {
             <div className="md:col-span-4 lg:col-span-5">
               <div className="flex gap-2">
                 {/* Logo */}
-                <Link href="/" aria-label="Cruip">
+                <Link href="/" aria-label="Craft studio">
                   <svg
                     className="w-8 h-8 fill-current text-purple-600"
                     viewBox="0 0 32 32"
@@ -59,12 +58,18 @@ export default function Footer() {
                   <h6 className="text-gray-200 font-medium mb-1">Resources</h6>
                   <ul>
                     <li className="mb-1">
-                      <Link href="/" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">
+                      <Link
+                        href="/privacy-policy"
+                        className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out"
+                      >
                         Privacy Policy
                       </Link>
                     </li>
                     <li className="mb-1">
-                      <Link href="/" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">
+                      <Link
+                        href="/terms-of-service"
+                        className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out"
+                      >
                         Terms of Service
                       </Link>
                     </li>
