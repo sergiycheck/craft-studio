@@ -1,15 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import { Img } from "./common/Img";
-
-const image_600x600 = "https://picsum.photos/seed/picsum/600/600";
-
-const feature = {
-  image: image_600x600,
-  name: "Instant Features",
-  title: "Lorem ipsum dolor sit amet",
-  children:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-};
+import { projects } from "../api/projects";
+import Link from "next/link";
 
 export default function Features() {
   return (
@@ -29,9 +21,8 @@ export default function Features() {
             className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none"
             data-aos-id-blocks
           >
-            {new Array(6)
-              .fill(0)
-              .map((_, index) => ({ ...feature, delay: index * 100 }))
+            {projects
+              .map((project, index) => ({ ...project, image: project.images[0], delay: index * 100 }))
               .map((feature, index) => (
                 <FeatureItem key={index} {...feature} />
               ))}
@@ -43,13 +34,14 @@ export default function Features() {
 }
 
 type FeatureItemProps = {
+  id: string;
   image: string;
-  name: string;
-  title: string;
-  children: React.ReactNode;
+  project: string;
+  domain: string;
   delay: number;
+  features: string;
 };
-function FeatureItem({ image, name, title, children, delay }: FeatureItemProps) {
+function FeatureItem({ image, project, domain, features, delay, id }: FeatureItemProps) {
   return (
     <div
       className="flex flex-col h-full bg-gray-800 gap-2"
@@ -59,12 +51,15 @@ function FeatureItem({ image, name, title, children, delay }: FeatureItemProps) 
     >
       <div className="flex flex-col gap-2">
         <div className="h-[300px] w-auto overflow-hidden flex-1">
-          <img sizes="100%" src={image} className="rounded-tl-lg rounded-tr-lg object-cover" alt="" loading="lazy" />
+          <Link href={`/projects/${id}`}>
+            <img sizes="100%" src={image} className="rounded-tl-lg rounded-tr-lg object-cover" alt="" loading="lazy" />
+          </Link>
         </div>
       </div>
       <div className="flex flex-col p-4">
-        <h5 className="h5 mb-1">{name}</h5>
-        <p className="flex-grow text-gray-400">{children}</p>
+        <h5 className="h5 mb-1">{project}</h5>
+        <p className="p flex-grow text-gray-400">{domain}</p>
+        <p className="p text-gray-400 line-clamp-2">{features}</p>
       </div>
     </div>
   );

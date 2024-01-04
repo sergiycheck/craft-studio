@@ -25,6 +25,14 @@
   }
 }
 
+.p {
+  @apply text-lg leading-snug tracking-tight;
+}
+
+.a {
+  @apply text-lg leading-snug tracking-tight;
+}
+
 /* Font gradients */
 .font-gradient-indigo-purple-pink {
   @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-fit text-transparent bg-clip-text;
