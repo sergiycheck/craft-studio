@@ -1,5 +1,5 @@
 import { projects } from "@/api/projects";
-import { ProjectComponent } from "./project-components";
+import { ProjectComponent } from "../../../../components/projects/project-components";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({

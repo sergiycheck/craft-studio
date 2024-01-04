@@ -19,9 +19,9 @@ export function ProjectComponent({ project, nextProject }: { project: ProjectIte
       </div>
 
       {/* Footer section next random project  */}
-      <div className="flex gap-2 mx-auto justify-center items-center my-8 whitespace-nowrap flex-wrap">
-        <h4 className="h4">Next project</h4>
-        <Link className="a" href={`/projects/${nextProject.id}`}>
+      <div className="flex flex-col gap-2 mx-auto justify-center items-center my-8 whitespace-nowrap">
+        <p className="p text-gray-400">Next project</p>
+        <Link className="h2" href={`/projects/${nextProject.id}`}>
           {nextProject.project}
         </Link>
       </div>

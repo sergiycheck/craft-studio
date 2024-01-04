@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
-import { InputFilled } from "./common/InputFilled";
-import { TextFieldFilled } from "./common/TextFieldFilled";
+import { InputFilled } from "../common/InputFilled";
+import { TextFieldFilled } from "../common/TextFieldFilled";
 
 export const SubmitProposal = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);

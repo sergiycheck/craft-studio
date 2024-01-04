@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LinkedInSvg, WrappedSvgLink } from "./common/svgs";
+import { LinkedInSvg, WrappedSvgLink } from "../common/svgs";
 import Link from "next/link";
 
 const teamMembers = [

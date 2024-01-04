@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
-import { Img } from "./common/Img";
-import { projects } from "../api/projects";
+import { Img } from "../common/Img";
+import { projects } from "../../api/projects";
 import Link from "next/link";
 
 export default function Features() {

@@ -1,5 +1,5 @@
 import { projects } from "@/api/projects";
-import { ProjectComponent } from "@/app/(default)/projects/[id]/project-components";
+import { ProjectComponent } from "@/components/projects/project-components";
 import { ModalPortalRouteInterceptor } from "@/components/common/modal-portal-route-interceptor";
 
 export async function generateStaticParams() {

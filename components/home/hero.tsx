@@ -1,6 +1,6 @@
 import { FaChevronRight } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-import { links } from "./links";
+import { links } from "../links";
 import { SwiperAchievements } from "./swiper-achievements";
 
 export default function Hero() {
