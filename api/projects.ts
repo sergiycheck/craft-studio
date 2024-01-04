@@ -64,6 +64,7 @@ export const projects = [
 ];
 
 export type ProjectItem = {
+  id: string;
   project: string;
   domain: string;
   features: string;
