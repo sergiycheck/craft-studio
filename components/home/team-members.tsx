@@ -1,22 +1,48 @@
 import Image from "next/image";
-import { LinkedInSvg, WrappedSvgLink } from "../common/svgs";
+import { LinkedInSvg } from "../common/svgs";
 import Link from "next/link";
 
 const teamMembers = [
   {
-    image: "https://loremflickr.com/640/480/people",
-    name: "Anastasia Dan",
-    title: "Frontend Developer",
+    image: "/images/home/teammates/chief-technology-officer.png",
+    name: "Leander Ironheart",
+    title: "Chief Technology Officer",
   },
+  // first designer
   {
-    image: "https://loremflickr.com/640/480/people",
-    name: "Anastasia Dan",
-    title: "Backend Developer",
+    image: "/images/home/teammates/designer-1.png",
+    name: "Magnus Emberforge",
+    title: "UI/UX Engineer",
   },
+  //second designer
   {
-    image: "https://loremflickr.com/640/480/people",
-    name: "Anastasia Dan",
-    title: "UX Designer",
+    image: "/images/home/teammates/designer-2.png",
+    name: "Seraphina Moonstone",
+    title: "UI/UX Engineer",
+  },
+  // full stack 1
+  {
+    image: "/images/home/teammates/full-stack-1.png",
+    name: "Lars Emberforge",
+    title: "Full Stack Engineer",
+  },
+  // full stack 2
+  {
+    image: "/images/home/teammates/full-stack-2.png",
+    name: "Karl Emberforge",
+    title: "Full Stack Engineer",
+  },
+  // female head of sales
+  {
+    image: "/images/home/teammates/head-of-sales.png",
+    name: "Erika Emberforge",
+    title: "Head of Sales",
+  },
+  // product manager
+  {
+    image: "/images/home/teammates/product-manager.png",
+    name: "Erik Emberforge",
+    title: "Felix Shadowvale",
   },
 ];
 
@@ -68,7 +94,7 @@ function TeamMember({ image, name, title, delay }: TeamMemberProps) {
     >
       <div className="flex justify-center p-6">
         <div className="w-[200px] h-[200px] relative">
-          <Image className="rounded-full w-full h-full" fill objectFit="cover" src={image} alt={name} />
+          <Image className="rounded-full w-full h-full" fill objectFit="contain" src={image} alt={name} />
         </div>
       </div>
       <div className="flex flex-col text-center justify-center p-6 mt-6  font-medium">
@@ -76,15 +102,7 @@ function TeamMember({ image, name, title, delay }: TeamMemberProps) {
         <p className="text-md text-gray-400">{title}</p>
       </div>
 
-      <div className="flex flex-col items-center p-6 mt-6 border-t border-gray-700 font-medium">
-        <Link
-          className="w-fit text-white border border-gray-700 hover:scale-110 transition duration-150 ease-in-out  "
-          href="#"
-          aria-label="LinkedIn"
-        >
-          <LinkedInSvg />
-        </Link>
-      </div>
+      <div className="flex flex-col items-center p-6 mt-6 border-t border-gray-700 font-medium"></div>
     </div>
   );
 }

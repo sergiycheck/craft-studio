@@ -56,7 +56,7 @@ export const projects = [
   },
   {
     id: "6",
-    project: "StremSync",
+    project: "StreamSync",
     domain: "Entertainment",
     features:
       "Synchronize your favorite music and videos seamlessly across devices with our Stream Sync Service. Enjoy uninterrupted playback, personalized playlists, and an immersive, synchronized audio-visual journey. Elevate your entertainment, anytime, anywhere!",
