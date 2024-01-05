@@ -22,7 +22,7 @@ export function ModalPortalRouteInterceptor({ children }: { children: React.Reac
   useHideScrollbar({ isOpen: isOpened });
 
   function onDismiss() {
-    router.replace("/");
+    router.replace("/", { scroll: false });
     // @ts-ignore
     dialogRef.current?.close();
 
