@@ -10,11 +10,11 @@ export function ProjectComponent({ project, nextProject }: { project: ProjectIte
         <SwiperImagesForProject images={project.images} />
 
         {/* Section header */}
-        <div className="max-w-3xl mx-auto pb-12 md:pb-20">
+        <div className="max-w-3xl mx-auto pb-12 md:pb-20 flex flex-col gap-4">
           <h2 className="h2 mb-4">{project.project}</h2>
           <p className="text-xl text-gray-400">{project.domain}</p>
-          <p className="flex-grow text-gray-400">{project.features}</p>
-          <p className="flex-grow text-gray-400">{project.challenges_overcome}</p>
+          <p className=" text-gray-400">{project.features}</p>
+          <p className=" text-gray-400">{project.challenges_overcome}</p>
         </div>
       </div>
 

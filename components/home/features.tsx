@@ -1,5 +1,3 @@
-import Image, { StaticImageData } from "next/image";
-import { Img } from "../common/Img";
 import { projects } from "../../api/projects";
 import Link from "next/link";
 
@@ -50,15 +48,21 @@ function FeatureItem({ image, project, domain, features, delay, id }: FeatureIte
       data-aos-delay={delay}
     >
       <div className="flex flex-col gap-2">
-        <div className="h-[300px] w-auto overflow-hidden flex-1">
+        <div className="min-h-[300px] w-auto overflow-hidden flex-1">
           <Link href={`/projects/${id}`} scroll={false}>
-            <img sizes="100%" src={image} className="rounded-tl-lg rounded-tr-lg object-cover" alt="" loading="lazy" />
+            <img
+              sizes="100%"
+              src={image}
+              className="rounded-tl-lg rounded-tr-lg object-cover h-full w-full"
+              alt=""
+              loading="lazy"
+            />
           </Link>
         </div>
       </div>
-      <div className="flex flex-col p-4">
+      <div className="flex flex-col p-4 gap-2">
         <h5 className="h5 mb-1">{project}</h5>
-        <p className="p flex-grow text-gray-400">{domain}</p>
+        <p className="p text-gray-400">{domain}</p>
         <p className="p text-gray-400 line-clamp-2">{features}</p>
       </div>
     </div>
