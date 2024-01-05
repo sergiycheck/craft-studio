@@ -1,5 +1,6 @@
 import { projects } from "../../api/projects";
 import Link from "next/link";
+import { Img } from "../common/Img";
 
 export default function Features() {
   return (
@@ -50,13 +51,7 @@ function FeatureItem({ image, project, domain, features, delay, id }: FeatureIte
       <div className="flex flex-col gap-2">
         <div className="min-h-[300px] w-auto overflow-hidden flex-1">
           <Link href={`/projects/${id}`} scroll={false}>
-            <img
-              sizes="100%"
-              src={image}
-              className="rounded-tl-lg rounded-tr-lg object-cover h-full w-full"
-              alt=""
-              loading="lazy"
-            />
+            <Img src={image} className="rounded-tl-lg rounded-tr-lg object-cover h-full w-full" alt={project} />
           </Link>
         </div>
       </div>

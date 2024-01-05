@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { LinkedInSvg } from "../common/svgs";
-import Link from "next/link";
 
 const teamMembers = [
   {
@@ -94,7 +92,7 @@ function TeamMember({ image, name, title, delay }: TeamMemberProps) {
     >
       <div className="flex justify-center p-6">
         <div className="w-[200px] h-[200px] relative">
-          <Image className="rounded-full w-full h-full" fill objectFit="contain" src={image} alt={name} />
+          <Image className="rounded-full w-full h-full object-contain" fill src={image} alt={name} />
         </div>
       </div>
       <div className="flex flex-col text-center justify-center p-6 mt-6  font-medium">
