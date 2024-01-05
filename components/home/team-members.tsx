@@ -42,7 +42,7 @@ const teamMembers = [
   {
     image: "/images/home/teammates/product-manager.png",
     name: "Erik Emberforge",
-    title: "Felix Shadowvale",
+    title: "Product Manager",
   },
 ];
 
