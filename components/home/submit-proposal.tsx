@@ -1,7 +1,37 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, forwardRef } from "react";
 import { InputFilled } from "../common/InputFilled";
 import { TextFieldFilled } from "../common/TextFieldFilled";
+import { ZodError, z } from "zod";
+import { TiTick } from "react-icons/ti";
+import { RxCross2 } from "react-icons/rx";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const budgets = ["< $50k", "$50k - 100k", "$100k - 200k", "> $200k"] as const;
+const projectTypes = ["Web App", "Mobile App", "SaaS", "Marketplace", "Website"] as const;
+
+const submitProposalTextFieldsSchema = z.object({
+  name: z.string().optional(),
+  company: z.string().optional(),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .max(100, {
+      message: "Email is too long",
+    })
+    .email({ message: "Email is invalid" }),
+  description: z.string().optional(),
+});
+
+type SubmitProposalTextFieldsSchema = z.infer<typeof submitProposalTextFieldsSchema>;
+
+const submitProposalSchema = submitProposalTextFieldsSchema.extend({
+  projectType: z.enum([...projectTypes]).optional(),
+  budget: z.enum([...budgets]).optional(),
+});
+
+type SubmitProposalSchema = z.infer<typeof submitProposalSchema>;
 
 export const SubmitProposal = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -13,36 +43,136 @@ export const SubmitProposal = () => {
     }
   };
 
+  const [selectedProjectType, setProjectType] = useState<string | null>(null);
+  const [selectedBudget, setBudget] = useState<string | null>(null);
+
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean | null>(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<SubmitProposalTextFieldsSchema>({
+    resolver: zodResolver(submitProposalTextFieldsSchema),
+  });
+
+  const resetForm = () => {
+    setFile(null);
+    setProjectType(null);
+    setBudget(null);
+    setError(null);
+    setSuccess(null);
+    reset();
+  };
+
+  const onSubmit: SubmitHandler<SubmitProposalTextFieldsSchema> = (data) => {
+    const formData = new FormData();
+
+    if (file) {
+      // check file size
+      if (file.size > 5 * 1024 * 1024) {
+        setError("File size should be less than 5 MB");
+        return;
+      }
+      formData.append("file", file);
+    }
+
+    if (selectedProjectType) {
+      formData.append("projectType", selectedProjectType);
+    }
+
+    if (selectedBudget) {
+      formData.append("budget", selectedBudget);
+    }
+
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    let submitProposalData: SubmitProposalSchema;
+    try {
+      submitProposalData = submitProposalSchema.parse(Object.fromEntries(formData.entries()));
+    } catch (err: any) {
+      const zodError = err as ZodError<SubmitProposalSchema>;
+      const errorMessagesWithPath = zodError.errors
+        .map((error) => {
+          return error.message;
+        })
+        .join("\n");
+      setError(errorMessagesWithPath);
+      return;
+    }
+
+    fetch("/api/send-email", {
+      method: "POST",
+      body: formData,
+    })
+      .then(() => {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(null);
+          resetForm();
+        }, 3000);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
-    <div className="max-w-6xl mx-auto text-white p-8">
+    <div className="max-w-6xl mx-auto text-white p-8 relative">
+      {/* success submit response message */}
+      {success && (
+        <div
+          className="absolute w-full h-full bg-purple-500 rounded-md flex justify-center items-center z-10"
+          data-aos="fade-up"
+        >
+          <div className="h-fit w-fit p-4 rounded-full ring-2 ring-slate-100 bg-purple-700 ">
+            <TiTick className="text-white text-4xl" />
+          </div>
+        </div>
+      )}
+
       <h1 className="text-4xl font-bold mb-4">Request a quote</h1>
       <p className="mb-8">
         Let's discuss your project! Please, provide us with a brief description of what you already have and what you
         are going to achieve.
       </p>
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-4">
-          <InputFilled name="name" placeholder="Your name" />
-          <InputFilled name="company" placeholder="Your company name" />
+          <InputFilled {...register("name")} placeholder="Your name" />
+          {errors.name?.message && <p className="text-xs text-red-500">{errors.name?.message}</p>}
+          <InputFilled {...register("company")} placeholder="Your company name" />
+          {errors.company?.message && <p className="text-xs text-red-500">{errors.company?.message}</p>}
           <div>
             <span className="font-semibold block mb-2">Project type</span>
             <div className="flex gap-2 flex-wrap">
-              <ButtonOption>Web App</ButtonOption>
-              <ButtonOption>Mobile App</ButtonOption>
-              <ButtonOption>SaaS</ButtonOption>
-              <ButtonOption>Marketplace</ButtonOption>
-              <ButtonOption>Website</ButtonOption>
+              {projectTypes.map((projectType) => (
+                <ButtonOption
+                  key={projectType}
+                  className={selectedProjectType == projectType ? "bg-zinc-800" : ""}
+                  onClick={() => {
+                    setProjectType(projectType);
+                  }}
+                >
+                  {projectType}
+                </ButtonOption>
+              ))}
             </div>
           </div>
           <label className="font-semibold" htmlFor="description">
             Describe your project in short
           </label>
-          <TextFieldFilled id="description" placeholder="Project description" />
+          <TextFieldFilled {...register("description")} placeholder="Project description" />
+          {errors.description?.message && <p className="text-xs text-red-500">{errors.description?.message}</p>}
 
           <div className="flex gap-2">
             <input ref={fileInputRef} type="file" onChange={handleFileChange} className="hidden"></input>
             <div
-              className="flex gap-2 cursor-pointer"
+              className="flex gap-2 cursor-pointer justify-center items-center"
               onClick={() => {
                 if (fileInputRef.current) {
                   fileInputRef.current.click();
@@ -51,20 +181,29 @@ export const SubmitProposal = () => {
             >
               <PaperclipIcon className="text-white mr-2" />
               <p className="text-md">attach file</p>
+              {file && <p className="p text-xs no-wrap truncate max-w-[200px]">{file.name}</p>}
             </div>
           </div>
         </div>
 
         <div className="flex flex-col space-y-4">
-          <InputFilled name="email" placeholder="Your email" />
+          <InputFilled {...register("email")} placeholder="Your email" />
+          {errors.email?.message && <p className="text-xs text-red-500">{errors.email?.message}</p>}
 
           <div>
             <span className="font-semibold block mb-2">Project Budget</span>
             <div className="flex gap-2 flex-wrap">
-              <ButtonOption>{`< $50k`}</ButtonOption>
-              <ButtonOption>$50k - 100k</ButtonOption>
-              <ButtonOption>$100k - 200k</ButtonOption>
-              <ButtonOption>{`> $200k`}</ButtonOption>
+              {budgets.map((budget) => (
+                <ButtonOption
+                  key={budget}
+                  className={selectedBudget == budget ? "bg-zinc-800" : ""}
+                  onClick={() => {
+                    setBudget(budget);
+                  }}
+                >
+                  {budget}
+                </ButtonOption>
+              ))}
             </div>
           </div>
           <p className="text-xs mt-8">
@@ -73,7 +212,15 @@ export const SubmitProposal = () => {
               Privacy Policy
             </a>
           </p>
-          <button className="btn text-white mt-4 bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out">
+          {error && (
+            <div className="bg-red-500 p-2 rounded-lg" data-aos="fade-up">
+              <p className="text-white text-sm">{error}</p>
+            </div>
+          )}
+          <button
+            type="submit"
+            className="btn text-white mt-4 bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out"
+          >
             Send
           </button>
         </div>
@@ -101,13 +248,21 @@ function PaperclipIcon(props: any) {
   );
 }
 
-function ButtonOption({ children }: { children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      className=" p-3 bg-transparent border rounded-lg border-gray-600 text-white active:bg-zinc-800 transition duration-150 ease-in-out"
-    >
-      {children}
-    </button>
-  );
-}
+const ButtonOption = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
+  ({ children, ...props }, ref) => {
+    console.log(props.className);
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        {...props}
+        className={`p-3 bg-transparent border rounded-lg border-gray-600 text-white active:bg-zinc-800 transition duration-150 ease-in-out ${
+          props.className ?? ""
+        }`}
+      >
+        {children}
+      </button>
+    );
+  }
+);

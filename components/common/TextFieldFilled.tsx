@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC, FormEventHandler, ReactNode, useId } from "react";
+import { ChangeEventHandler, FC, FormEventHandler, ReactNode, forwardRef, useId } from "react";
 
 interface TextFieldFilledProps {
   cols?: number;
@@ -14,20 +14,22 @@ interface TextFieldFilledProps {
   value?: string;
 }
 
-const TextFieldFilled: FC<TextFieldFilledProps> = ({
-  cols,
-  id,
-  leftElement,
-  name,
-  onChange,
-  onSubmit,
-  placeholder = "Placeholder",
-  rightElement,
-  rows = 4,
-  type,
-  value,
-  ...props
-}: TextFieldFilledProps) => {
+const TextFieldFilled = forwardRef<HTMLTextAreaElement, TextFieldFilledProps>((props, ref) => {
+  const {
+    cols,
+    id,
+    leftElement,
+    name,
+    onChange,
+    onSubmit,
+    placeholder = "Placeholder",
+    rightElement,
+    rows = 4,
+    type,
+    value,
+    ...rest
+  } = props;
+
   const formId = useId();
   return (
     <div className="relative flex w-full rounded-t-[8px]">
@@ -37,6 +39,7 @@ const TextFieldFilled: FC<TextFieldFilledProps> = ({
         </div>
       )}
       <textarea
+        ref={ref}
         id={id || formId}
         onChange={onChange}
         onSubmit={onSubmit}
@@ -109,6 +112,6 @@ const TextFieldFilled: FC<TextFieldFilledProps> = ({
       )}
     </div>
   );
-};
+});
 
 export { TextFieldFilled };
