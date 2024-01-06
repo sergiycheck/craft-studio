@@ -106,7 +106,7 @@ export const SubmitProposal = () => {
   };
 
   return (
-    <div className="container mx-auto text-white p-2">
+    <div className="max-w-6xl sm:p-8 mx-auto text-white p-2">
       <h1 className="text-4xl font-bold mb-4">Request a quote</h1>
       <p className="mb-8">
         Let's discuss your project! Please, provide us with a brief description of what you already have and what you

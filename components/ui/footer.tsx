@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
 
             {/* 2nd, 3rd and 4th blocks */}
-            <div className="md:col-span-8 lg:col-span-7 grid sm:grid-cols-2 ">
+            <div className="md:col-span-8 lg:col-span-7 grid sm:grid-cols-2 gap-4">
               {/*  block */}
               <div className="flex sm:justify-end">
                 <div className="text-sm w-fit">
@@ -77,9 +77,9 @@ export default function Footer() {
           </div>
 
           {/* Bottom area */}
-          <div className="md:flex md:items-center md:justify-between ">
+          <div className="sm:flex sm:items-center sm:justify-between ">
             {/* Social links */}
-            <ul className="flex flex-col items-center sm:flex-row  md:order-1 gap-2 mb-4">
+            <ul className="flex justify-center items-center sm:order-1 gap-2 mb-4">
               <li className="w-fit">
                 <WrappedSvgLink href="/" ariaLabel="Twitter">
                   <XTwitterSvg />
