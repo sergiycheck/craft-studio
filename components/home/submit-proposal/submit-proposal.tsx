@@ -1,37 +1,19 @@
 "use client";
 import { useRef, useState, forwardRef } from "react";
-import { InputFilled } from "../common/InputFilled";
-import { TextFieldFilled } from "../common/TextFieldFilled";
+import { InputFilled } from "../../common/InputFilled";
+import { TextFieldFilled } from "../../common/TextFieldFilled";
 import { ZodError, z } from "zod";
 import { TiTick } from "react-icons/ti";
-import { RxCross2 } from "react-icons/rx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-const budgets = ["< $50k", "$50k - 100k", "$100k - 200k", "> $200k"] as const;
-const projectTypes = ["Web App", "Mobile App", "SaaS", "Marketplace", "Website"] as const;
-
-const submitProposalTextFieldsSchema = z.object({
-  name: z.string().optional(),
-  company: z.string().optional(),
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .max(100, {
-      message: "Email is too long",
-    })
-    .email({ message: "Email is invalid" }),
-  description: z.string().optional(),
-});
-
-type SubmitProposalTextFieldsSchema = z.infer<typeof submitProposalTextFieldsSchema>;
-
-const submitProposalSchema = submitProposalTextFieldsSchema.extend({
-  projectType: z.enum([...projectTypes]).optional(),
-  budget: z.enum([...budgets]).optional(),
-});
-
-type SubmitProposalSchema = z.infer<typeof submitProposalSchema>;
+import {
+  SubmitProposalWithEnumsSchema,
+  SubmitProposalTextFieldsSchema,
+  budgets,
+  projectTypes,
+  submitProposalSchema,
+  submitProposalTextFieldsSchema,
+} from "./schema";
 
 export const SubmitProposal = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +35,6 @@ export const SubmitProposal = () => {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<SubmitProposalTextFieldsSchema>({
     resolver: zodResolver(submitProposalTextFieldsSchema),
@@ -92,11 +73,11 @@ export const SubmitProposal = () => {
       formData.append(key, value);
     });
 
-    let submitProposalData: SubmitProposalSchema;
+    let submitProposalData: SubmitProposalWithEnumsSchema;
     try {
       submitProposalData = submitProposalSchema.parse(Object.fromEntries(formData.entries()));
     } catch (err: any) {
-      const zodError = err as ZodError<SubmitProposalSchema>;
+      const zodError = err as ZodError<SubmitProposalWithEnumsSchema>;
       const errorMessagesWithPath = zodError.errors
         .map((error) => {
           return error.message;
@@ -250,8 +231,6 @@ function PaperclipIcon(props: any) {
 
 const ButtonOption = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
   ({ children, ...props }, ref) => {
-    console.log(props.className);
-
     return (
       <button
         ref={ref}
