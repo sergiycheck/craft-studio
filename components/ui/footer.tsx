@@ -30,7 +30,7 @@ export default function Footer() {
             {/* 2nd, 3rd and 4th blocks */}
             <div className="md:col-span-8 lg:col-span-7 grid sm:grid-cols-2 ">
               {/*  block */}
-              <div className="flex justify-end">
+              <div className="flex sm:justify-end">
                 <div className="text-sm w-fit">
                   <h6 className="text-gray-200 font-medium mb-1">Case studies</h6>
                   <ul>
@@ -50,7 +50,7 @@ export default function Footer() {
               </div>
 
               {/*  block */}
-              <div className="flex justify-end">
+              <div className="flex sm:justify-end">
                 <div className="text-sm w-fit">
                   <h6 className="text-gray-200 font-medium mb-1">Resources</h6>
                   <ul>
@@ -77,30 +77,30 @@ export default function Footer() {
           </div>
 
           {/* Bottom area */}
-          <div className="md:flex md:items-center md:justify-between">
+          <div className="md:flex md:items-center md:justify-between ">
             {/* Social links */}
-            <ul className="flex mb-4 md:order-1 md:ml-4 md:mb-0">
-              <li>
+            <ul className="flex flex-col items-center sm:flex-row  md:order-1 gap-2 mb-4">
+              <li className="w-fit">
                 <WrappedSvgLink href="/" ariaLabel="Twitter">
                   <XTwitterSvg />
                 </WrappedSvgLink>
               </li>
-              <li className="ml-4">
+              <li className="w-fit">
                 <WrappedSvgLink href="/" ariaLabel="Twitter">
                   <GithubSvg />
                 </WrappedSvgLink>
               </li>
-              <li className="ml-4">
+              <li className="w-fit">
                 <WrappedSvgLink href="/" ariaLabel="Twitter">
                   <MetaSvg />
                 </WrappedSvgLink>
               </li>
-              <li className="ml-4">
+              <li className="w-fit">
                 <WrappedSvgLink href="/" ariaLabel="Twitter">
                   <InstagramSvg />
                 </WrappedSvgLink>
               </li>
-              <li className="ml-4">
+              <li className="w-fit">
                 <WrappedSvgLink href="/" ariaLabel="Twitter">
                   <LinkedInSvg />
                 </WrappedSvgLink>

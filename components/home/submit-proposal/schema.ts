@@ -18,13 +18,22 @@ export const submitProposalTextFieldsSchema = z.object({
 
 export type SubmitProposalTextFieldsSchema = z.infer<typeof submitProposalTextFieldsSchema>;
 
+export const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
 export const submitProposalSchema = submitProposalTextFieldsSchema.extend({
   projectType: z.enum([...projectTypes]).optional(),
   budget: z.enum([...budgets]).optional(),
+  file: z
+    .any()
+    .refine((file) => {
+      return (
+        file && file?.size <= MAX_FILE_SIZE,
+        {
+          message: `File is too big. Max file size is ${MAX_FILE_SIZE / 1024 / 1024} MB`,
+        }
+      );
+    })
+    .optional(),
 });
 
-export type SubmitProposalWithEnumsSchema = z.infer<typeof submitProposalSchema>;
-
-export type SubmitProposalSchema = SubmitProposalWithEnumsSchema & {
-  file: File;
-};
+export type SubmitProposalSchema = z.infer<typeof submitProposalSchema>;

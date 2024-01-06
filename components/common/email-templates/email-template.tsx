@@ -22,10 +22,10 @@ export const EmailTemplate: React.FC<Readonly<SubmitProposalSchema>> = (props) =
             <Container>
               <Heading>Request form from ${props.email}</Heading>
               <Text className="text-left">
-                <p className="text-md">Email: ${props.email}</p>
-                <p className="text-md">Company: ${props.company}</p>
-                <p className="text-md">Project type: ${props.projectType}</p>
-                <p className="text-md">Budget: ${props.budget}</p>
+                <p className="text-md">Email: {props.email}</p>
+                <p className="text-md">Company: {props.company}</p>
+                <p className="text-md">Project type: {props.projectType}</p>
+                <p className="text-md">Budget: {props.budget}</p>
               </Text>
             </Container>
           </Section>
