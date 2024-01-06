@@ -1,7 +1,9 @@
 import { FaChevronRight } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-import { links } from "../links";
+import { links } from "../local-links";
 import { SwiperAchievements } from "./swiper-achievements";
+import { ButtonAElementWithChevronRight } from "../common/button-link";
+import { externalLinks } from "@/utils/external-links";
 
 export default function Hero() {
   return (
@@ -61,7 +63,9 @@ export default function Hero() {
 
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-left">
               <div className="w-fit" data-aos="fade-up" data-aos-delay="400">
-                <ButtonWithChevronRight text="Schedule a call" />
+                <ButtonAElementWithChevronRight href={externalLinks.calendly} target="_blank">
+                  Schedule a call
+                </ButtonAElementWithChevronRight>
               </div>
             </div>
           </div>
@@ -139,7 +143,9 @@ export default function Hero() {
                 good design should solve problems and position a brand so it stands out as well as stands for something.
               </p>
               <div className="w-fit" data-aos="fade-up">
-                <ButtonWithChevronRight text="Schedule a call" />
+                <ButtonAElementWithChevronRight href={externalLinks.calendly} target="_blank">
+                  Schedule a call
+                </ButtonAElementWithChevronRight>
               </div>
             </div>
           </div>
@@ -164,13 +170,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ButtonWithChevronRight({ text }: { text?: string }) {
-  return (
-    <a className="flex items-center gap-2 sm:gap-[50px] btn px-2 bg-purple-600 hover:bg-purple-700 " href="#0">
-      <span className="text-white">{text}</span> <FaChevronRight className=" right-2" />
-    </a>
   );
 }
