@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useHideScrollbar } from "../common/hooks/use-hide-scrollbar";
 
 export default function MobileMenu() {
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
@@ -35,21 +36,7 @@ export default function MobileMenu() {
   });
 
   // hide the scrollbar when the mobile menu is open
-  useEffect(() => {
-    const hideScrollBar = (): void => {
-      document.body.style.overflow = "hidden";
-    };
-
-    const showScrollBar = (): void => {
-      document.body.style.overflow = "auto";
-    };
-
-    if (mobileNavOpen) {
-      hideScrollBar();
-    } else {
-      showScrollBar();
-    }
-  }, [mobileNavOpen]);
+  useHideScrollbar({ isOpen: mobileNavOpen });
 
   // close the mobile menu when screen bigger than md
   useEffect(() => {

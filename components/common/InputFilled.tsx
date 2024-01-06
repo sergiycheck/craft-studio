@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC, FormEventHandler, ReactNode, useId } from "react";
+import { ChangeEventHandler, FC, FormEventHandler, ReactNode, forwardRef, useId } from "react";
 
 interface InputFilledProps {
   id?: string;
@@ -14,19 +14,21 @@ interface InputFilledProps {
   value?: string;
 }
 
-const InputFilled: FC<InputFilledProps> = ({
-  id,
-  leftElement,
-  name,
-  onChange,
-  onSubmit,
-  placeholder = "Placeholder",
-  rightElement,
-  rows,
-  type,
-  value,
-  ...props
-}: InputFilledProps) => {
+const InputFilled = forwardRef<HTMLInputElement, InputFilledProps>((props, ref) => {
+  const {
+    id,
+    leftElement,
+    name,
+    onChange,
+    onSubmit,
+    placeholder = "Placeholder",
+    rightElement,
+    rows,
+    type,
+    value,
+    ...rest
+  } = props;
+
   const formId = useId();
 
   return (
@@ -37,6 +39,7 @@ const InputFilled: FC<InputFilledProps> = ({
         </div>
       )}
       <input
+        ref={ref}
         id={id || formId}
         onChange={onChange}
         onSubmit={onSubmit}
@@ -57,7 +60,7 @@ const InputFilled: FC<InputFilledProps> = ({
           border-indigo-200
           bg-indigo-50
           px-[12px]
-          pt-[24px]
+          pt-[26px]
           text-body-medium
           text-gray-900
           placeholder-transparent
@@ -70,7 +73,7 @@ const InputFilled: FC<InputFilledProps> = ({
           ${leftElement ? "pl-[60px]" : ""}
         `}
         placeholder={placeholder}
-        {...props}
+        {...rest}
       />
       <label
         htmlFor={id || formId}
@@ -79,16 +82,15 @@ const InputFilled: FC<InputFilledProps> = ({
           absolute
           -top-[-6px]
           cursor-text
-          text-body-small
+          text-sm
           text-gray-500
           transition-all
           peer-placeholder-shown:top-[23px]
           peer-placeholder-shown:text-body-medium
           peer-placeholder-shown:text-gray-500
           peer-focus:-top-[-6px]
-          peer-focus:text-body-small
-          peer-focus:text-gray-500
           peer-focus:text-xs
+          peer-focus:text-gray-500
           dark:peer-placeholder-shown:text-gray-500
           ${leftElement ? "left-[48px] px-[12px]" : "left-[12px]"}
         `}
@@ -112,7 +114,7 @@ const InputFilled: FC<InputFilledProps> = ({
       )}
     </div>
   );
-};
+});
 
 InputFilled.propTypes = {};
 

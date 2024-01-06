@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GithubSvg, InstagramSvg, LinkedInSvg, MetaSvg, WrappedSvgLink, XTwitterSvg } from "../common/svgs";
+import { projects } from "../../api/projects";
 
 export default function Footer() {
   return (
@@ -31,23 +32,19 @@ export default function Footer() {
               {/*  block */}
               <div className="flex justify-end">
                 <div className="text-sm w-fit">
-                  <h6 className="text-gray-200 font-medium mb-1">Products</h6>
+                  <h6 className="text-gray-200 font-medium mb-1">Case studies</h6>
                   <ul>
-                    <li className="mb-1">
-                      <Link href="/" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">
-                        Web Studio
-                      </Link>
-                    </li>
-                    <li className="mb-1">
-                      <Link href="/" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">
-                        DynamicBox Flex
-                      </Link>
-                    </li>
-                    <li className="mb-1">
-                      <Link href="/" className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out">
-                        Programming Forms
-                      </Link>
-                    </li>
+                    {projects.map((project) => (
+                      <li className="mb-1" key={project.id}>
+                        <Link
+                          href={`/projects/${project.id}`}
+                          scroll={false}
+                          className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out"
+                        >
+                          {project.project}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

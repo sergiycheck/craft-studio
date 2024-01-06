@@ -7,7 +7,13 @@ import "aos/dist/aos.css";
 
 import Footer from "@/components/ui/footer";
 
-export default function DefaultLayout({ children }: { children: React.ReactNode }) {
+export default function DefaultLayout({
+  children,
+  projects_modal,
+}: {
+  children: React.ReactNode;
+  projects_modal: React.ReactNode;
+}) {
   useEffect(() => {
     AOS.init({
       once: true,
@@ -25,6 +31,9 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
 
         {children}
       </main>
+
+      {projects_modal}
+      <div id="modal-root" />
 
       <Footer />
     </>

@@ -17,6 +17,7 @@ type ImgProps = React.HTMLAttributes<HTMLDivElement> & {
   src?: string | StaticImageData;
   unoptimized?: boolean;
   width?: number | string;
+  imgClassName?: string;
 };
 
 const Img: FC<ImgProps> = ({
@@ -34,6 +35,7 @@ const Img: FC<ImgProps> = ({
   src,
   unoptimized,
   width,
+  imgClassName,
   ...props
 }: ImgProps) => {
   return (
@@ -59,6 +61,7 @@ const Img: FC<ImgProps> = ({
         sizes="100%"
         placeholder={placeholder}
         loading="lazy"
+        className={imgClassName ? imgClassName : ""}
         style={{
           objectFit: objectFit || "cover",
           borderRadius: radius,
