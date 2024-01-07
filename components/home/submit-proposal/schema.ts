@@ -20,19 +20,33 @@ export type SubmitProposalTextFieldsSchema = z.infer<typeof submitProposalTextFi
 
 export const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
+export function validateFile(file: File) {
+  if (file && file.size > MAX_FILE_SIZE) {
+    const zodError = new ZodError([
+      {
+        fatal: true,
+        message: `File is too big. Max file size is ${MAX_FILE_SIZE / 1024 / 1024} MB`,
+        code: "too_big",
+        path: ["file"],
+        maximum: MAX_FILE_SIZE,
+        inclusive: true,
+        type: "string",
+      },
+    ]);
+    throw zodError;
+  }
+  return true;
+}
+
 export const submitProposalSchema = submitProposalTextFieldsSchema.extend({
   projectType: z.enum([...projectTypes]).optional(),
   budget: z.enum([...budgets]).optional(),
   file: z
     .any()
     .refine((file) => {
-      return (
-        file && file?.size <= MAX_FILE_SIZE,
-        {
-          message: `File is too big. Max file size is ${MAX_FILE_SIZE / 1024 / 1024} MB`,
-        }
-      );
+      return validateFile(file);
     })
+
     .optional(),
 });
 
