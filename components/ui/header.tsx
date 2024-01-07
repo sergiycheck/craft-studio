@@ -1,11 +1,12 @@
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
+import { ContainerWrapper } from "../common/container-wrapper";
 
 export default function Header() {
   return (
     <>
       <header className="fixed w-full z-10 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <ContainerWrapper>
           <div className="flex items-center justify-between h-20">
             <div className="shrink-0 mr-4">
               <Link href="/" className="block" aria-label="Craft studio">
@@ -37,7 +38,7 @@ export default function Header() {
               </ul>
             </nav>
           </div>
-        </div>
+        </ContainerWrapper>
       </header>
       <MobileMenu />
     </>

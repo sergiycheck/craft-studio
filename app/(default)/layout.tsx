@@ -25,12 +25,12 @@ export default function DefaultLayout({
 
   return (
     <>
-      <main className="grow">
+      <div className="grow">
         {/* TODO: fix overflow bug with page illustration */}
         {/* <PageIllustration /> */}
 
         {children}
-      </main>
+      </div>
 
       {projects_modal}
       <div id="modal-root" />

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ContainerWrapper } from "../common/container-wrapper";
 
 const teamMembers = [
   {
@@ -47,29 +48,27 @@ const teamMembers = [
 export default function TeamMembers() {
   return (
     <section>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20 border-t border-gray-800">
-          {/* Section header */}
-          <div className="pb-12 md:pb-20">
-            <h2 className="h2 mb-4">Our Team</h2>
+      <ContainerWrapper>
+        {/* Section header */}
+        <div className="pb-12 md:pb-20">
+          <h2 className="h2 mb-4">Our Team</h2>
 
-            <p className="text-xl text-gray-400">
-              Meet Craft Studio team members. We are a small team of designers and developers working together to create
-              beautiful, easy to use solutions for the world.
-            </p>
-          </div>
-
-          <div
-            data-aos-team-member-blocks
-            className="max-w-sm mx-auto grid gap-8 
-              lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none"
-          >
-            {teamMembers.map((item, index) => (
-              <TeamMember key={index} {...item} delay={index * 100} />
-            ))}
-          </div>
+          <p className="text-xl text-gray-400">
+            Meet Craft Studio team members. We are a small team of designers and developers working together to create
+            beautiful, easy to use solutions for the world.
+          </p>
         </div>
-      </div>
+
+        <div
+          data-aos-team-member-blocks
+          className="max-w-sm mx-auto grid gap-8 
+              lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none"
+        >
+          {teamMembers.map((item, index) => (
+            <TeamMember key={index} {...item} delay={index * 100} />
+          ))}
+        </div>
+      </ContainerWrapper>
     </section>
   );
 }

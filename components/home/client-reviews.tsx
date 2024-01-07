@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion, useInView } from "framer-motion";
+import { ContainerWrapper } from "../common/container-wrapper";
 
 const clients = [
   {
@@ -32,13 +33,15 @@ const clients = [
 
 export function ClientReviews() {
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 relative">
-      <h2 className="h2 text-center">Clients reviews</h2>
+    <section>
+      <ContainerWrapper className="relative">
+        <h2 className="h2 text-center">Clients reviews</h2>
 
-      {clients.map((item, index) => (
-        <ClientReview key={index} item={item} />
-      ))}
-    </div>
+        {clients.map((item, index) => (
+          <ClientReview key={index} item={item} />
+        ))}
+      </ContainerWrapper>
+    </section>
   );
 }
 

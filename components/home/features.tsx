@@ -1,33 +1,32 @@
 import { projects } from "../../api/projects";
 import Link from "next/link";
 import { Img } from "../common/Img";
+import { ContainerWrapper } from "../common/container-wrapper";
 
 export default function Features() {
   return (
     <section>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20">
-          {/* Section header */}
-          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 mb-4">Case studies</h2>
-            <p className="text-xl text-gray-400">
-              Explore how we help our clients grow their business and improve their customer experience.
-            </p>
-          </div>
-
-          {/* Items */}
-          <div
-            className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none"
-            data-aos-id-blocks
-          >
-            {projects
-              .map((project, index) => ({ ...project, image: project.images[0], delay: index * 100 }))
-              .map((feature, index) => (
-                <FeatureItem key={index} {...feature} />
-              ))}
-          </div>
+      <ContainerWrapper>
+        {/* Section header */}
+        <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
+          <h2 className="h2 mb-4">Case studies</h2>
+          <p className="text-xl text-gray-400">
+            Explore how we help our clients grow their business and improve their customer experience.
+          </p>
         </div>
-      </div>
+
+        {/* Items */}
+        <div
+          className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none"
+          data-aos-id-blocks
+        >
+          {projects
+            .map((project, index) => ({ ...project, image: project.images[0], delay: index * 100 }))
+            .map((feature, index) => (
+              <FeatureItem key={index} {...feature} />
+            ))}
+        </div>
+      </ContainerWrapper>
     </section>
   );
 }

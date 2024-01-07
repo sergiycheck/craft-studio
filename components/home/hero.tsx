@@ -1,14 +1,14 @@
-import { FaChevronRight } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { links } from "../local-links";
 import { SwiperAchievements } from "./swiper-achievements";
 import { ButtonAElementWithChevronRight } from "../common/button-link";
 import { externalLinks } from "@/utils/external-links";
+import { ContainerWrapper } from "../common/container-wrapper";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col gap-10">
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 relative">
+    <section className="flex flex-col space-y-4 sm:space-y-10 ">
+      <ContainerWrapper className="relative">
         {/* Illustration behind hero content */}
         {/* TODO: fix overflow bug with page illustration */}
         {/* <div
@@ -47,7 +47,7 @@ export default function Hero() {
         </div> */}
 
         {/* Hero content */}
-        <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
+        <div className="relative">
           <h3 className="h4 font-gradient-indigo-purple-pink " data-aos="fade-up">
             Software agency
           </h3>
@@ -116,11 +116,11 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
+      </ContainerWrapper>
 
       {/* company name and text */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 relative">
-        <div className="relative py-2 sm:py-4">
+      <ContainerWrapper className=" relative">
+        <div className="relative ">
           <div className="text-center">
             <h2 className="h2 text-[8vw] mb-4" data-aos="fade-up">
               Craft <span className="font-gradient-indigo-purple-pink">Studio</span>
@@ -150,10 +150,10 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
+      </ContainerWrapper>
 
       {/* swiper with achievements */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 relative overflow-hidden" data-aos="fade-up">
+      <ContainerWrapper className="relative overflow-hidden" data-aos="fade-up">
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] grid-rows-w lg:grid-rows-1">
           <div className="flex items-center justify-center">
             <SwiperAchievements />
@@ -168,7 +168,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
+      </ContainerWrapper>
     </section>
   );
 }
