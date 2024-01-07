@@ -107,7 +107,7 @@ export const SubmitProposal = () => {
   };
 
   return (
-    <section>
+    <section id="request-proposal">
       <ContainerWrapper>
         <h1 className="text-4xl font-bold mb-4">Request a quote</h1>
         <p className="mb-8">

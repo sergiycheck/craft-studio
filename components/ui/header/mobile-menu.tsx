@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { useHideScrollbar } from "../common/hooks/use-hide-scrollbar";
+import { useHideScrollbar } from "../../common/hooks/use-hide-scrollbar";
+import { headerElements } from "./shared";
 
 export default function MobileMenu() {
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
@@ -82,25 +83,18 @@ export default function MobileMenu() {
         className="fixed top-[80px] z-20 left-0 w-full  overflow-hidden transition-all duration-300 ease-in-out backdrop-blur-md"
         style={mobileNavOpen ? { height: window.innerHeight, opacity: 1 } : { height: 0, opacity: 0.8 }}
       >
-        <ul className=" px-4 py-2 h-full">
-          <li>
-            <Link
-              href="/signin"
-              className="flex font-medium w-full text-purple-600 hover:text-gray-200 py-2 justify-center"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              Sign in
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/signup"
-              className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              Sign up
-            </Link>
-          </li>
+        <ul className="px-4 py-2 h-full flex flex-col items-center">
+          {headerElements.map((el) => (
+            <li key={el.name}>
+              <Link
+                href={el.href}
+                onClick={() => setMobileNavOpen(false)}
+                className="font-medium  px-4 py-3 flex items-center transition duration-150 ease-in-out"
+              >
+                {el.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

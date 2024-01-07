@@ -33,7 +33,7 @@ const clients = [
 
 export function ClientReviews() {
   return (
-    <section>
+    <section id="client-reviews">
       <ContainerWrapper className="relative">
         <h2 className="h2 text-center">Clients reviews</h2>
 

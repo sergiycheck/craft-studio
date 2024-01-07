@@ -1,10 +1,12 @@
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
-import { ContainerWrapper } from "../common/container-wrapper";
+import { ContainerWrapper } from "../../common/container-wrapper";
+import { headerElements } from "./shared";
 
 export default function Header() {
   return (
     <>
+      {/* TODO: backdrop blur not working on ios iphone */}
       <header className="fixed w-full z-10 backdrop-blur-md">
         <ContainerWrapper>
           <div className="flex items-center justify-between h-20">
@@ -18,19 +20,16 @@ export default function Header() {
 
             <nav className="hidden md:flex md:grow">
               <ul className="flex grow justify-end flex-wrap items-center">
-                <li>
-                  <Link
-                    href="/signin"
-                    className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                  >
-                    Sign in
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/signup" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">
-                    Sign up
-                  </Link>
-                </li>
+                {headerElements.map((el) => (
+                  <li key={el.name}>
+                    <Link
+                      href={el.href}
+                      className="font-medium  px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                    >
+                      {el.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>

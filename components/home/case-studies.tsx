@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Img } from "../common/Img";
 import { ContainerWrapper } from "../common/container-wrapper";
 
-export default function Features() {
+export default function CaseStudies() {
   return (
-    <section>
+    <section id="case-studies">
       <ContainerWrapper>
         {/* Section header */}
         <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">

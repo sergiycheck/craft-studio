@@ -47,7 +47,7 @@ const teamMembers = [
 
 export default function TeamMembers() {
   return (
-    <section>
+    <section id="team-members">
       <ContainerWrapper>
         {/* Section header */}
         <div className="pb-12 md:pb-20">
