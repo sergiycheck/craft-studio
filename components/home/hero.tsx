@@ -61,12 +61,10 @@ export default function Hero() {
               with <span className="font-gradient-indigo-purple-pink">digital products</span>
             </h1>
 
-            <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-left">
-              <div className="w-fit" data-aos="fade-up" data-aos-delay="400">
-                <ButtonAElementWithChevronRight href={externalLinks.calendly} target="_blank">
-                  Schedule a call
-                </ButtonAElementWithChevronRight>
-              </div>
+            <div className="w-fit" data-aos="fade-up" data-aos-delay="400">
+              <ButtonAElementWithChevronRight href={externalLinks.calendly} target="_blank">
+                Schedule a call
+              </ButtonAElementWithChevronRight>
             </div>
           </div>
 
@@ -122,9 +120,9 @@ export default function Hero() {
       <ContainerWrapper className=" relative">
         <div className="relative ">
           <div className="text-center">
-            <h2 className="h2 text-[8vw] mb-4" data-aos="fade-up">
+            <h1 className="h1 sm:text-[8vw] mb-4" data-aos="fade-up">
               Craft <span className="font-gradient-indigo-purple-pink">Studio</span>
-            </h2>
+            </h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-[2fr_4fr] gap-4" data-aos="fade-up">
@@ -154,12 +152,12 @@ export default function Hero() {
 
       {/* swiper with achievements */}
       <ContainerWrapper className="relative overflow-hidden" data-aos="fade-up">
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] grid-rows-w lg:grid-rows-1">
-          <div className="flex items-center justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] grid-rows-w lg:grid-rows-1  space-y-4 sm:space-y-10">
+          <div className="flex items-center justify-center order-2 sm:order-1 mt-4 sm:mt-0">
             <SwiperAchievements />
           </div>
 
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center order-1 sm:order-2">
             <div className="flex flex-col gap-4">
               <h3 className="h3">Achievements</h3>
               <p className="text-xl text-gray-400">

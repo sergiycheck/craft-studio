@@ -19,7 +19,7 @@ const clients = [
   },
   {
     name: "Seraphina Evergreen",
-    title: "CEO at Nexus Blindspot",
+    title: "CEO at Blindspot",
     image: "/images/home/clients/client-3.png",
     feedback: `Craft Studio's contribution to bindspot's cybersecurity platform has been invaluable. Their ability to visually communicate complex cybersecurity concepts has significantly enhanced our users' understanding of our services. Craft Studio's designs not only make our platform visually appealing but also aid in effectively conveying the importance of cybersecurity. The collaboration has been instrumental in reinforcing bindspot's commitment to security and user education.`,
   },
