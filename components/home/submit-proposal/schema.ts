@@ -21,7 +21,7 @@ export type SubmitProposalTextFieldsSchema = z.infer<typeof submitProposalTextFi
 export const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 export function validateFile(file: File) {
-  if (file.size > MAX_FILE_SIZE) {
+  if (file && file.size > MAX_FILE_SIZE) {
     const zodError = new ZodError([
       {
         fatal: true,
