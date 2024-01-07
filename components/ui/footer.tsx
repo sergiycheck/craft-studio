@@ -54,14 +54,6 @@ export default function Footer() {
                       Privacy Policy
                     </Link>
                   </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/terms-of-service"
-                      className="text-gray-400 hover:text-gray-100 transition duration-150 ease-in-out"
-                    >
-                      Terms of Service
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </div>

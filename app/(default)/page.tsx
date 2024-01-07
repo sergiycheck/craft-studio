@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Craft studio",
-  description: "Page description",
+  description:
+    "Craft Studio: Shaping the future of software development with cutting-edge technologies, best practices, and artificial intelligence. We are a leading software agency committed to delivering innovative solutions that redefine possibilities. Join us in crafting the next generation of technology.",
 };
 
 import Hero from "@/components/home/hero";
