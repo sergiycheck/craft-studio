@@ -80,7 +80,8 @@ export default function MobileMenu() {
       <nav
         id="mobile-nav"
         ref={mobileNav}
-        className="fixed top-[80px] z-20 left-0 w-full  overflow-hidden transition-all duration-300 ease-in-out backdrop-blur-md"
+        className="fixed top-[80px] z-20 left-0 w-full 
+          overflow-hidden transition-all duration-300 ease-in-out backdrop-blur-custom-1"
         style={mobileNavOpen ? { height: window.innerHeight, opacity: 1 } : { height: 0, opacity: 0.8 }}
       >
         <ul className="px-4 py-2 h-full flex flex-col items-center">

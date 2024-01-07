@@ -90,3 +90,16 @@
 .form-radio {
   @apply text-purple-600;
 }
+
+/* TODO: fix blur effect not working on chrome ios */
+/* blur effects */
+.backdrop-blur-custom-1::before {
+  backdrop-filter: blur(12px) contrast(60%);
+  -webkit-backdrop-filter: blur(12px) contrast(60%);
+  @apply bg-gray-800;
+}
+.backdrop-blur-custom-1 {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  @apply bg-gray-800;
+}

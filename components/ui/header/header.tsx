@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       {/* TODO: backdrop blur not working on ios iphone */}
-      <header className="fixed w-full z-10 backdrop-blur-md">
+      <header className="fixed w-full z-10 backdrop-blur-custom-1">
         <ContainerWrapper>
           <div className="flex items-center justify-between h-20">
             <div className="shrink-0 mr-4">
