@@ -44,6 +44,7 @@ export default function MobileMenu() {
     const resizeHandler = (): void => {
       if (window.innerWidth > 768 && mobileNavOpen) {
         setMobileNavOpen(false);
+        setRectY3(18);
       }
     };
 
@@ -51,6 +52,13 @@ export default function MobileMenu() {
 
     return () => window.removeEventListener("resize", resizeHandler);
   });
+
+  const [rectY3, setRectY3] = useState<number>(18);
+
+  const toggleMobileNav = () => {
+    setMobileNavOpen(!mobileNavOpen);
+    setRectY3(mobileNavOpen ? 18 : 11);
+  };
 
   return (
     <div className="md:hidden z-10">
@@ -60,19 +68,17 @@ export default function MobileMenu() {
         className={`hamburger ${mobileNavOpen && "active"} right-10 top-6 fixed`}
         aria-controls="mobile-nav"
         aria-expanded={mobileNavOpen}
-        onClick={() => {
-          setMobileNavOpen(!mobileNavOpen);
-        }}
+        onClick={toggleMobileNav}
       >
         <span className="sr-only">Menu</span>
         <svg
-          className="w-6 h-6 fill-current text-gray-300 hover:text-gray-200 transition duration-150 ease-in-out"
+          className="w-6 h-6 fill-current text-gray-300 hover:text-gray-200 transition duration-150 ease-in-out relative"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect y="4" width="24" height="2" rx="1" />
           <rect y="11" width="24" height="2" rx="1" />
-          <rect y="18" width="24" height="2" rx="1" />
+          <rect y={rectY3} width="24" height="2" rx="1" />
         </svg>
       </button>
 
@@ -89,7 +95,7 @@ export default function MobileMenu() {
             <li key={el.name}>
               <Link
                 href={el.href}
-                onClick={() => setMobileNavOpen(false)}
+                onClick={toggleMobileNav}
                 className="font-medium  px-4 py-3 flex items-center transition duration-150 ease-in-out"
               >
                 {el.name}
