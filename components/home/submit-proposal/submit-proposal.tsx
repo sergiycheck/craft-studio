@@ -16,6 +16,7 @@ import {
 import { Oval, OvalProps } from "react-loader-spinner";
 import { TiTick } from "react-icons/ti";
 import { ContainerWrapper } from "@/components/common/container-wrapper";
+import Link from "next/link";
 
 export const SubmitProposal = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -206,9 +207,9 @@ export const SubmitProposal = () => {
           <div className="flex flex-col gap-4">
             <p className="text-xs mt-8">
               By submitting this form I consent to having Brights collect and process my personal details and agree with{" "}
-              <a className="underline" href="#">
+              <Link href="/privacy-policy" className="underline">
                 Privacy Policy
-              </a>
+              </Link>
             </p>
             {error && (
               <div className="bg-red-500 p-2 rounded-lg" data-aos="fade-up">
