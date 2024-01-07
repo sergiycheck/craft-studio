@@ -67,8 +67,8 @@ export function SwiperAchievements() {
           >
             <div className="relative rounded-lg h-full w-full">
               <Img src={achievement.image} alt="slide_image" />
-              <div className="p-10 absolute bottom-0  w-full bg-zinc-300/20 ">
-                <p className="text-2xl font-bold text-white ">{achievement.text}</p>
+              <div className="p-5 absolute bottom-0  w-full bg-zinc-300/20 ">
+                <p className="p sm:text-xl font-bold text-white line-clamp-2">{achievement.text}</p>
               </div>
             </div>
           </SwiperSlide>

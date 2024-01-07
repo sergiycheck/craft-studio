@@ -24,6 +24,7 @@
     "react-fast-marquee": "^1.6.2",
     "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
+    "react-loader-spinner": "^6.1.6",
     "resend": "^2.1.0",
     "swiper": "^11.0.5",
     "typescript": "^5.3.3",
