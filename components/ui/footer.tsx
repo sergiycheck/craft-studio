@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
 
           {/* 2nd, 3rd and 4th blocks */}
-          <div className="md:col-span-8 lg:col-span-7 grid sm:grid-cols-2 gap-4">
+          <div className="md:col-span-8 lg:col-span-7 grid grid-cols-2 gap-4">
             {/*  block */}
             <div className="flex sm:justify-end">
               <div className="text-sm w-fit">
