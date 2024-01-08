@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     let payload: any = {
       from: "Craft Studio request <onboarding@resend.dev>",
-      to: ["sergiycheck@gmail.com"],
+      to: ["cra4t.stud1o@gmail.com"],
       subject: "New proposal",
       react: EmailTemplate(dataTextFields) as React.ReactElement,
     };
