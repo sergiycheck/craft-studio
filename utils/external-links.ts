@@ -1,3 +1,3 @@
 export const externalLinks = {
-  calendly: "https://calendly.com/sergiycheck/session-with-craft-studio",
+  calendly: "https://calendly.com/cra4t-stud1o/request-proposition-discussion",
 };
