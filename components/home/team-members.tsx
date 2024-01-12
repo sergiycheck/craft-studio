@@ -3,27 +3,16 @@ import { ContainerWrapper } from "../common/container-wrapper";
 
 const teamMembers = [
   {
-    image: "/images/home/teammates/chief-technology-officer.png",
-    name: "Leander Ironheart",
-    title: "Chief Technology Officer",
+    image: "/images/home/teammates/company_owner.png",
+    name: "Serhii Kuzmych",
+    title: "CEO",
   },
-  // first designer
-  {
-    image: "/images/home/teammates/designer-1.png",
-    name: "Magnus Emberforge",
-    title: "UI/UX Engineer",
-  },
-  //second designer
-  {
-    image: "/images/home/teammates/designer-2.png",
-    name: "Seraphina Moonstone",
-    title: "UI/UX Engineer",
-  },
+
   // full stack 1
   {
-    image: "/images/home/teammates/full-stack-1.png",
     name: "Lars Emberforge",
     title: "Full Stack Engineer",
+    image: "/images/home/teammates/full-stack-1.png",
   },
   // full stack 2
   {
@@ -31,17 +20,10 @@ const teamMembers = [
     name: "Karl Emberforge",
     title: "Full Stack Engineer",
   },
-  // female head of sales
   {
-    image: "/images/home/teammates/head-of-sales.png",
-    name: "Erika Emberforge",
-    title: "Head of Sales",
-  },
-  // product manager
-  {
-    image: "/images/home/teammates/product-manager.png",
-    name: "Erik Emberforge",
-    title: "Product Manager",
+    image: "/images/home/teammates/designer-1.png",
+    name: "Magnus Emberforge",
+    title: "UI/UX Engineer",
   },
 ];
 
@@ -62,7 +44,7 @@ export default function TeamMembers() {
         <div
           data-aos-team-member-blocks
           className="max-w-sm mx-auto grid gap-8 
-              lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none"
+              lg:grid-cols-3 lg:gap-6 lg:max-w-none"
         >
           {teamMembers.map((item, index) => (
             <TeamMember key={index} {...item} delay={index * 100} />
